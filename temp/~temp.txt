@@ -1,0 +1,18 @@
+import pandas as pd
+import getpass
+
+
+user = getpass.getuser()
+
+path = f'C:\\Users\\{user}\\Procter and Gamble\\Grupo Check List - Bases de dados\\'
+# Definindo diretório para planilhas de controle (teste power apps)
+# C:\Users\wanderson.wf\Procter and Gamble\Gutemberg, Borges - Projeto CRUD - Teste
+path_controle = f'C:\\Users\\{user}\\Procter and Gamble\\Gutemberg, Borges - Projeto CRUD - Teste\\'
+
+ativos_file = 'teste_df_Ativos_Yusen.xlsx'
+# Obtendo dados relacionados aos Ativos
+df_ativos_yusen = pd.read_excel(path_controle + ativos_file, dtype=str)
+absentaismo_file = 'df_Absenteísmo.xlsx'
+
+df_abs_advertencia = pd.read_excel(path_controle + absentaismo_file, sheet_name='Advertência', dtype=str)
+df_abs_documento = pd.read_excel(path_controle + absentaismo_file, sheet_name='Documento', dtype=str)

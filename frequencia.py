@@ -30,21 +30,21 @@ def get_frequencia():
     ]
 
     df_frequencia = df_programacao_mensal[
-        ['Descrição de linha', 'Código', 'Código Func', 'Data']
+        ['Descrição de linha', 'Código', 'Matrícula', 'Data']
     ].groupby(
-        ['Descrição de linha', 'Código', 'Código Func']
+        ['Descrição de linha', 'Código', 'Matrícula']
     ).count().reset_index()
 
     df_frequencia = df_frequencia.rename(columns={'Data': 'Frequencia'})
 
     df_frequencia = df_frequencia.merge(
-        df_programacao_mensal[['Descrição de linha', 'Código', 'Código Func', 'Data']],
-        on=['Descrição de linha', 'Código', 'Código Func'],
+        df_programacao_mensal[['Descrição de linha', 'Código', 'Matrícula', 'Data']],
+        on=['Descrição de linha', 'Código', 'Matrícula'],
         how='left'
     )
 
     df_frequencia.sort_values(['Descrição de linha', 'Data'], ascending=False, inplace=True)
 
-    df_frequencia.drop_duplicates(['Descrição de linha', 'Código', 'Código Func'], inplace=True)
+    df_frequencia.drop_duplicates(['Descrição de linha', 'Código', 'Matrícula'], inplace=True)
 
     return df_frequencia
